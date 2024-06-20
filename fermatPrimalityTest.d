@@ -2,7 +2,6 @@
 
 // import the tools we need
 import std.bigint: BigInt;
-import std.conv : to;
 import std.math : sqrt;
 import std.random : uniform;
 import std.stdio : readf, writeln;
@@ -39,7 +38,7 @@ bool fermatPrimeTest(ulong number, int trials)
             // then it is a composite
             return false;
         // if Fermat's Little Theorem (a ^ b mod b == a) doesn't work, notice we convert it to 'BigInt' because the result may be gigantic
-        else if (BigInt(to!string(tester)) ^^ number % number != tester)
+        else if (BigInt(tester) ^^ number % number != tester)
             // then it is a composite
             return false;
 
