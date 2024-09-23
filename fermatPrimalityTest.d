@@ -31,9 +31,12 @@ bool fermatPrimeTest(ulong number, int trials)
         return false;
 
     // start a loop by setting a limit which is the square root of the number, then a tester value which is picked randomly, it runs 'trials' times
-    for (ulong limit = cast(ulong) sqrt(cast(real) number) + 1, tester = uniform(2, limit); trials-- > 0; tester = uniform(2, limit))
+    for (ulong limit = cast(ulong) sqrt(cast(real) number) + 1, tester = uniform(2, limit); trials > 0; tester = uniform(2, limit))
     {
-        // if their GDC isn't 1, we use the 'gdc()' function above
+        // let the user know how much more until it is done, we decrement 'trials' in each iteration
+        writeln(trials--, " trials left.");
+
+        // if their GDC isn't 1, calculated using the 'gdc()' function above
         if (gdc(number, tester) != 1)
             // then it is a composite
             return false;
@@ -41,9 +44,6 @@ bool fermatPrimeTest(ulong number, int trials)
         else if (BigInt(tester) ^^ number % number != tester)
             // then it is a composite
             return false;
-
-        // let the user know how much more until it is done
-        writeln(trials, " trials left.");
     }
 
     // if it got this far then it is very likely a prime
