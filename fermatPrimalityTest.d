@@ -50,6 +50,7 @@ bool fermatPrimeTest(ulong number, int trials)
     return true;
 }
 
+// start the software
 void main()
 {
     // this will be number to be tested
